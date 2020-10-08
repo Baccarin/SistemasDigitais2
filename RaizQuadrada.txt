@@ -1,0 +1,46 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+ 
+entity raiz_quadrada is
+  port (
+    clk : in std_logic;
+    x : in natural range 0 to 100;
+    r : out natural range 0 to 10
+    );
+end raiz_quadrada;
+ 
+architecture arquitetura of raiz_quadrada is
+  signal z : natural range 0 to 10;
+  signal x : natural range 0 to 100;
+  signal y : natural range 0 to 100;
+  signal t : natural range 0 to 2;
+   
+begin
+
+  PROCESS(clk)
+  begin
+  t <= 1;
+  x <= 2;
+  y <= 4;
+  z <= 1;
+
+  if (clk = '1' OR clk = '0') then
+    -- while(t > 0) loop
+    if t > 0 and y < x then
+      z <= z + 1;
+      y <= y + x + 1;
+      x <= x + 2;
+    end if;
+    
+    if y < x then
+      t <= 1;
+    else 
+      t <= 0;
+      r <= z;
+    end if;
+ 
+  end if;
+  end process;
+
+end arquitetura;
